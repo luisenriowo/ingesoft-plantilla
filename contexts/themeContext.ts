@@ -1,19 +1,19 @@
 'use client';
 
-import { createContext } from 'react';
+import { createContext, type Dispatch, type SetStateAction } from 'react';
 
 export type ThemeMode = 'light' | 'dark';
 
 export interface IThemeContext {
   theme: ThemeMode;
-  setTheme: (theme: ThemeMode) => void;
+  setTheme: Dispatch<SetStateAction<ThemeMode>>;
   toggleTheme: () => void;
 }
 
 export const initialState: IThemeContext = {
   theme: 'light',
-  setTheme: () => {},
-  toggleTheme: () => {},
+  setTheme: () => undefined,
+  toggleTheme: () => undefined,
 };
 
-export const ThemeContext = createContext<IThemeContext>(initialState);
+export const ThemeContext = createContext<IThemeContext | undefined>(undefined);
