@@ -13,6 +13,20 @@
   --blackest-gray: #262626;
 }
 
+.light-theme {
+  color-scheme: light;
+}
+
+.dark-theme {
+  color-scheme: dark;
+  --white: #0f172a;
+  --light-gray: #111827;
+  --gray: #f3f4f6;
+  --black: #f9fafb;
+  --dark-gray: #9ca3af;
+  --blackest-gray: #020617;
+}
+
 h1 {
   font-size: 2.2em;
   font-weight: 800;

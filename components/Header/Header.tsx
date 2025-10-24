@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 // hooks
 import useClickOutside from '@hooks/useClickOutside';
+import useTheme from '@hooks/useTheme';
 
 // components
 import Dropdown from '@components/Dropdown/Dropdown';
@@ -17,6 +18,11 @@ const Header: React.FC = () => {
 
   const [menu, setMenu] = useState<boolean>(false);
   const [dropdown, setDropdown] = useState<boolean>(false);
+  const { theme, toggleTheme } = useTheme();
+
+  const isDarkMode = theme === 'dark';
+  const themeLabel = isDarkMode ? 'Switch to light mode' : 'Switch to dark mode';
+  const themeIcon = isDarkMode ? 'light_mode' : 'dark_mode';
 
   /**
    * This is a functional component for the Header.
@@ -64,6 +70,19 @@ const Header: React.FC = () => {
           </Link>
         </div>
         <div className='members' ref={wrapperRef}>
+          <button
+            type='button'
+            className='theme-toggle'
+            onClick={() => {
+              toggleTheme();
+            }}
+            aria-label={themeLabel}
+            title={themeLabel}
+          >
+            <span className='material-symbols-outlined theme-toggle__icon' aria-hidden='true'>
+              {themeIcon}
+            </span>
+          </button>
           {/* <Link href='/members/signup' className='blue'>
             Sign up
           </Link>
@@ -152,6 +171,24 @@ const Header: React.FC = () => {
                   </Link>
                 </li>
               </ul>
+              <div className='theme-toggle-mobile'>
+                <button
+                  type='button'
+                  className='theme-toggle'
+                  onClick={() => {
+                    toggleTheme();
+                  }}
+                  aria-label={themeLabel}
+                  title={themeLabel}
+                >
+                  <span className='material-symbols-outlined theme-toggle__icon' aria-hidden='true'>
+                    {themeIcon}
+                  </span>
+                  <span className='theme-toggle__label'>
+                    {isDarkMode ? 'Light mode' : 'Dark mode'}
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
